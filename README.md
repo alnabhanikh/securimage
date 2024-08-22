@@ -237,7 +237,7 @@ This is a sample project.
 
 To add a captcha to your login form, use the following code snippet:
 
-### logib.php
+### login.php
 
 ```php
 <?php
