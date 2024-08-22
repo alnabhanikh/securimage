@@ -23,13 +23,13 @@ To use or modify the code, start with the 4.0 (nextgen) branch. It has many feat
 
 ## Requirements
 
-* PHP 7.0 or greater
-* GD  2.0
-* FreeType (Required, for TTF fonts)
-* PDO (if using Sqlite, MySQL, or PostgreSQL)
+- PHP 7.0 or greater
+- GD 2.0
+- FreeType (Required, for TTF fonts)
+- PDO (if using Sqlite, MySQL, or PostgreSQL)
 
 ## Synopsis
-    
+
 See the [example form](example_form.php) to get started. PHP sessions are not required if database storage is used instead.
 
 ## Description
@@ -37,41 +37,42 @@ See the [example form](example_form.php) to get started. PHP sessions are not re
 What is **Securimage**?
 
 Securimage is a PHP class that is used to generate and validate CAPTCHA images.
-    
+
 The classes uses an existing PHP session or creates its own if none is found to
-store the CAPTCHA code.  In addition, a database can be used instead of 
+store the CAPTCHA code. In addition, a database can be used instead of
 session storage.
-    
+
 Variables within the class are used to control the style and display of the
-image.  The class uses TTF fonts and effects for strengthening the security of
+image. The class uses TTF fonts and effects for strengthening the security of
 the image.
-    
+
 It also creates audible codes which are played for visually impared users.
 
 ## UPGRADE NOTICE
 
 **3.6.3 and below:**
-Securimage 3.6.4 fixed a XSS vulnerability in example_form.ajax.php.  It is
+Securimage 3.6.4 fixed a XSS vulnerability in example_form.ajax.php. It is
 recommended to upgrade to the latest version or delete example_form.ajax.php
 from the securimage directory on your website.
 
 **3.6.2 and above:**
 
-If you are upgrading to 3.6.2 or greater *AND* are using database storage,
+If you are upgrading to 3.6.2 or greater _AND_ are using database storage,
 the table structure has changed in 3.6.2 adding an audio_data column for
 storing audio files in the database in order to support HTTP range
-requests.  Delete your tables and have Securimage recreate them or see
+requests. Delete your tables and have Securimage recreate them or see
 the function createDatabaseTables() in securimage.php for the new structure
 depending on which database backend you are using and alter the tables as
-needed.  If using SQLite, just overwrite your existing securimage.sq3 file
+needed. If using SQLite, just overwrite your existing securimage.sq3 file
 with the one from this release.
 
-*If you are not using database tables for storage, ignore this notice.*
+_If you are not using database tables for storage, ignore this notice._
 
 ## Copyright
+
 Script
-    Copyright (c) 2018 Drew Phillips
-    All rights reserved.
+Copyright (c) 2018 Drew Phillips
+All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
@@ -102,49 +103,49 @@ Script
     is used under the BSD License.  See WavFile.php for details.
     Many thanks to Paul Voegler (http://www.voegler.eu/) for contributing to
     Securimage.
-Script
----------------------------------------------------------------------------
+
+## Script
 
 **Flash code for Securimage**
 
 Flash code created by Age Bosma & Mario Romero (animario@hotmail.com)
 Many thanks for releasing this to the project!
 
----------------------------------------------------------------------------
+---
 
 **HKCaptcha**
 
 Portions of Securimage contain code from Han-Kwang Nienhuys' PHP captcha
-        
+
     Han-Kwang Nienhuys' PHP captcha
     Copyright June 2007
-    
+
     This copyright message and attribution must be preserved upon
     modification. Redistribution under other licenses is expressly allowed.
     Other licenses include GPL 2 or higher, BSD, and non-free licenses.
     The original, unrestricted version can be obtained from
     http://www.lagom.nl/linux/hkcaptcha/
-    
----------------------------------------------------------------------------
+
+---
 
 **AHGBold.ttf**
 
     AHGBold.ttf (AlteHaasGroteskBold.ttf) font was created by Yann Le Coroller
     and is distributed as freeware.
-    
+
     Alte Haas Grotesk is a typeface that look like an helvetica printed in an
     old Muller-Brockmann Book.
-    
+
     These fonts are freeware and can be distributed as long as they are
-    together with this text file. 
-    
+    together with this text file.
+
     I would appreciate very much to see what you have done with it anyway.
-    
-    yann le coroller 
+
+    yann le coroller
     www.yannlecoroller.com
     yann@lecoroller.com
 
----------------------------------------------------------------------------
+---
 
 **PopForge Flash Library**
 
@@ -170,8 +171,8 @@ Portions of securimage_play.swf use the PopForge flash library for playing audio
      * You should have received a copy of the GNU General Public License
      * along with this program. If not, see <http://www.gnu.org/licenses/>
      */
-     
---------------------------------------------------------------------------
+
+---
 
 **Graphics**
 
@@ -181,13 +182,12 @@ Some graphics used are from the Humility Icon Pack by WorLord
      http://findicons.com/icon/192558/gnome_volume_control
      http://findicons.com/icon/192562/gtk_refresh
 
---------------------------------------------------------------------------
-
+---
 
 **Background noise sound files are from SoundJay.com**
 
 http://www.soundjay.com/tos.html
-     
+
      All sound effects on this website are created by us and protected under
      the copyright laws, international treaty provisions and other applicable
      laws. By downloading sounds, music or any material from this site implies
@@ -198,7 +198,7 @@ http://www.soundjay.com/tos.html
      projects (such as films, videos, games, presentations, animations, stage
      plays, radio plays, audio books, apps) be it for commercial or
      non-commercial purposes.
-    
+
      But you are NOT allowed to
      - post the sounds (as sound effects or ringtones) on any website for
        others to download, copy or use
@@ -215,7 +215,64 @@ http://www.soundjay.com/tos.html
        sound resource library for other people's use (such as animation
        creator, digital book creator, song maker software, etc.). If you are
        developing such computer programs, contact us for licensing options.
-    
+
      If you use the sound effects, please consider giving us a credit and
      linking back to us but it's not required.
-     
+
+---
+
+**using XAMPP server**
+
+- ensure to enable extension gd from php.ini
+
+---
+
+**testing**
+
+# My Project
+
+This is a sample project.
+
+## Adding Captcha
+
+To add a captcha to your login form, use the following code snippet:
+
+### logib.php
+
+```php
+<?php
+require_once 'securimage-nextgen/securimage.php';
+?>
+<input type="hidden" name="action" value="login_form" />
+<?php
+$options1 = array(
+    'input_id'   =>
+'login_captcha', // ID of the text input field (must be unique on the page!)
+'input_name' => 'captcha_code', // name of the captcha text field for POST
+'image_id' => 'login_captcha_img', // ID of the captcha image (must be unique on
+the page!) 'show_audio_button' => false, ); echo
+Securimage::getCaptchaHtml($options1); ?>
+```
+
+### validation script
+
+```php
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($\_POST['action']) && $\_POST['action'] == 'login_form') {
+
+
+// submitted "login" form
+// create new securimage object, indicating the namespace of the
+// code we want to check based on what form was submitted.
+$securimage = new Securimage();
+// validate user input
+$valid = $securimage->check(@$\_POST['captcha_code'], $\_POST['captcha_id']);
+
+if ($valid) {
+// code was correct, tell them so
+echo "<em class='valid'>Code entered correctly!</em><br>";
+} else {
+// incorrect code entered
+echo "<em class='invalid'>The code entered was incorrect.</em><br>";
+}
+}
+```
